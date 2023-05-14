@@ -96,30 +96,7 @@ const expenseOption = (event) => {
         let exp_card_buttons = document.createElement("div");
         exp_card_buttons.setAttribute("class", "exp_card_buttons");
   
-        let exp_edit = document.createElement("button");
-        exp_edit.innerHTML = "Edit";
-        exp_edit.setAttribute("class", "exp_edit");
-        exp_edit.addEventListener(
-          "click",
-          async () => {
-            let obj = {}
-            await fetch(`https://periwinkle-catfish-cuff.cyclic.app/expense/editexpense/${element._id}`,{
-              method: "PATCH",
-              headers: {
-                "Content-type": "application/json",
-                authorization: `Bearer ${token}`
-              },
-              body: JSON.stringify(obj)
-            })
-              .then((res) => {
-                return res.json();
-              })
-              .then((data) => {
-                console.log(data);
-                exp_main_func()
-              });
-          }
-        );
+        
   
         let exp_delete = document.createElement("button");
         exp_delete.innerHTML = "Delete";
@@ -163,7 +140,7 @@ const expenseOption = (event) => {
           }
         );
   
-        exp_card_buttons.append(exp_edit, exp_delete);
+        exp_card_buttons.append(exp_delete);
         click_show.append(exp_card_buttons);
   
         if (every_exp_main.childNodes[1]) {

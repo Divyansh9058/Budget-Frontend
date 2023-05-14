@@ -108,7 +108,7 @@ function every_incomes_main_display(data) {
 
     let income_amount = document.createElement("h4");
     income_amount.setAttribute("class", "income_amount");
-    income_amount.innerHTML = `${element.amount}`;
+    income_amount.innerHTML = `+ ${element.amount}`;
 
     every_income_card_inner.append(income_type, date, income_amount);
 
@@ -131,30 +131,49 @@ function every_incomes_main_display(data) {
       let income_card_buttons = document.createElement("div");
       income_card_buttons.setAttribute("class", "income_card_buttons");
 
-      let income_edit = document.createElement("button");
-      income_edit.innerHTML = "Edit";
-      income_edit.setAttribute("class", "income_edit");
-      income_edit.addEventListener("click", async () => {
-        let obj = {};
-        await fetch(
-          `https://periwinkle-catfish-cuff.cyclic.app/income/editincome/${element._id}`,
-          {
-            method: "PATCH",
-            headers: {
-              "Content-type": "application/json",
-              authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify(obj),
-          }
-        )
-          .then((res) => {
-            return res.json();
-          })
-          .then((data) => {
-            console.log(data);
-            income_main_func();
-          });
-      });
+      // let income_edit = document.createElement("button");
+      // income_edit.innerHTML = "Edit";
+      // income_edit.setAttribute("class", "income_edit");
+
+      // income_edit.addEventListener("click", async () => {
+      //   let obj = {};
+      //   add_income_form.classList.add("open-popup");
+      //   let income_form = document.getElementById("income_form");
+      //   income_form.addEventListener("submit", async (e) => {
+      //   e.preventDefault();
+      //   add_income_form.classList.remove("open-popup");
+      //   let input_income_name = document.getElementById("input_income_name");
+      //   let input_income_type = document.getElementById("input_income_type");
+      //   let input_income_amount = document.getElementById("input_income_amount");
+
+      //  obj = {
+      //    type: input_income_type.value,
+      //    title: input_income_name.value,
+      //    amount: input_income_amount.value,
+      //   };
+      //   let message;
+      //   await fetch(
+      //     `https://periwinkle-catfish-cuff.cyclic.app/income/editincome/${element._id}`,
+      //     {
+      //       method: "PATCH",
+      //       headers: {
+      //         "Content-type": "application/json",
+      //         authorization: `Bearer ${token}`,
+      //       },
+      //       body: JSON.stringify(obj),
+      //     }
+      //   )
+      //     .then((res) => {
+      //       return res.json();
+      //     })
+      //     .then((data) => {
+      //       console.log(data);
+      //       message=data.mes;
+      //     });
+      // });
+      // });
+        
+        
 
       let income_delete = document.createElement("button");
       income_delete.innerHTML = "Delete";
@@ -194,7 +213,7 @@ function every_incomes_main_display(data) {
           });
       });
 
-      income_card_buttons.append(income_edit, income_delete);
+      income_card_buttons.append(income_delete);
       click_show.append(income_card_buttons);
 
       if (every_incomes_main.childNodes[1]) {
