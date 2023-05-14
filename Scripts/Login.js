@@ -18,6 +18,7 @@ const loginlink = () => {
         name="password"
         placeholder="Password"
         autocomplete="off"
+        minlength="6"
         required
     />
     <button type="submit">Login</button>
@@ -77,6 +78,8 @@ const registerlink = () => {
                 name="fname"
                 placeholder="First Name"
                 autocomplete="off"
+                minlength="2"
+                maxlength="10"
                 required
                 />
                 <input
@@ -84,6 +87,8 @@ const registerlink = () => {
                 name="lname"
                 placeholder="Last Name"
                 autocomplete="off"
+                minlength="2"
+                maxlength="10"
                 required
                 />
             </div>
@@ -93,12 +98,14 @@ const registerlink = () => {
                 placeholder="Email"
                 autocomplete="off"
                 required
+                minlength="11"
             /><input
                 type="number"
                 name="mobile"
                 placeholder="Phone Number"
                 autocomplete="off"
                 required
+                minlength="10"
             />
             <input
                 type="password"

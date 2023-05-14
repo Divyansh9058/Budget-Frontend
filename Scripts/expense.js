@@ -26,6 +26,8 @@ const expenseOption = (event) => {
     exp_main_func();
   };
   
+// GET all expense function
+
   async function exp_main_func() {
     await fetch("https://periwinkle-catfish-cuff.cyclic.app/expense", {
       headers: {
@@ -37,11 +39,12 @@ const expenseOption = (event) => {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
         every_exp_main_display(data);
       });
   }
   
+  // main function to display all data 
+
   function every_exp_main_display(data) {
     let exp_bottom = document.getElementById("exp_bottom");
     exp_bottom.innerHTML = null;
@@ -89,15 +92,13 @@ const expenseOption = (event) => {
       every_exp_main.append(every_exp_card);
       exp_bottom.append(every_exp_main);
   
+// function to show delete button onClick of more option
+
       down_arrow.addEventListener("click", () => {
         let click_show = document.createElement("div");
         click_show.setAttribute("class", "click_show");
-  
         let exp_card_buttons = document.createElement("div");
         exp_card_buttons.setAttribute("class", "exp_card_buttons");
-  
-        
-  
         let exp_delete = document.createElement("button");
         exp_delete.innerHTML = "Delete";
         exp_delete.setAttribute("class", "exp_delete");
@@ -115,7 +116,6 @@ const expenseOption = (event) => {
                 return res.json();
               })
               .then((data) => {
-                console.log(data);
                 exp_main_func()
                 hisCache = [];
                 // if (data.msg=="Data Deleted"){
@@ -139,7 +139,6 @@ const expenseOption = (event) => {
               });
           }
         );
-  
         exp_card_buttons.append(exp_delete);
         click_show.append(exp_card_buttons);
   
@@ -155,6 +154,8 @@ const expenseOption = (event) => {
     exp_total_amount.innerHTML = total
   }
   
+// function to add Expense
+
   let add_exp_form = document.querySelector("#add_exp_form");
   let add_exp_btn = document.getElementById("add_exp_btn");
   add_exp_btn.addEventListener("click", () => {
@@ -188,7 +189,6 @@ const expenseOption = (event) => {
     );
   
     let response = await promise.json();
-    console.log(response);
     exp_main_func();
     alert("Expense Added successfully");
     hisCache = [];
@@ -211,7 +211,6 @@ const expenseOption = (event) => {
     })
     .then(res => res.json())
     .then((data)=>{
-      console.log(data);
       every_exp_main_display(data);
     })
   })
