@@ -2,7 +2,7 @@
   <img src="https://github.com/ankitamaddheshiya/honorable-furniture-4728/blob/main/Frontend/images/BBlogo1.PNG" alt="html" width="120" height="120"/>
 </div>
 
-QR Bot is a web application built using Nodejs, Expressjs, Mongoose, and MongoDB. The system is designed to allow users to generate number of QR Code and download the genrated QR image. It also help the users to analyse the generated QR code.  
+Budget Buddy is a software application that you may access from your computer, tablet or mobile device to track your finances, such as income, savings, debt payoff, or investing.  
 
 ## Tech Stacks Used
 
@@ -20,19 +20,22 @@ QR Bot is a web application built using Nodejs, Expressjs, Mongoose, and MongoDB
 
 ## Features 
 -  Authentication
+-  Google Authorization
+-  Redis (for Caching)
 -  APIValidation
 -  Responsive
 -  Cross Platform
 -  Signup/signin/Logout
--  QR Generator 
--  QR Analyser
+-  Income Add/Delet/Edit 
+-  Expense Add/Delet/Edit
+-  Filter by date 
 
 
 ## Run Locally
 ### Clone this Project
 
 ```
-https://github.com/abhishek1494k/QRBOT.com
+[https://github.com/ankitamaddheshiya/honorable-furniture-4728]
 ```
 
 ### Install npm Packages
@@ -53,7 +56,7 @@ npx nodemon index.js
 
 ### Runs the project in the development mode
 ```
-[http://localhost:5500]
+[http://localhost:4500]
 ```
 
 ### Environment Variables Required
@@ -63,7 +66,11 @@ npx nodemon index.js
 
 `PORT`
 
-`Nodemailer Password`
+`Redis Password`
+
+`google_secrate_id`
+
+`google_secrate_key`
 
 ## NPM Packages
 <p align = "center">
@@ -72,7 +79,6 @@ npx nodemon index.js
 <img src="https://github.com/faraz412/cozy-passenger-4798/blob/main/Frontend/Files/download.png?raw=true" alt="dotenv" width="60" height="50"/>
 <img src="https://github.com/faraz412/cozy-passenger-4798/blob/main/Frontend/Files/JWT.png?raw=true" alt="jwt" width="70" height="50"/>
 <img src="https://4008838.fs1.hubspotusercontent-na1.net/hubfs/4008838/mogoose-logo.png" alt="mongoose.png" width="70" height="70"/>     
-<img src="https://i0.wp.com/community.nodemailer.com/wp-content/uploads/2015/10/n2-2.png?fit=422%2C360&ssl=1" alt="nodemailer" width="50" height="70"/>
 <img src="https://user-images.githubusercontent.com/13700/35731649-652807e8-080e-11e8-88fd-1b2f6d553b2d.png" alt="nodemon.png" width="50" height="50"/>
 <img src="https://www.npmjs.com/npm-avatar/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdmF0YXJVUkwiOiJodHRwczovL3MuZ3JhdmF0YXIuY29tL2F2YXRhci8wNmFkMDUxNjc0NDA0NTVjOTQzYzE4NWIwNmM4NjBmMD9zaXplPTEwMCZkZWZhdWx0PXJldHJvIn0.fJ4Me0BC-QzMrHKVqZzMx9CzgTcYb06jEt9nk9NxC2c" alt="otpgen.png" width="50" height="50"/>
 </p>
@@ -80,61 +86,92 @@ npx nodemon index.js
 ## API Endpoints
    #### Home
 ```javascript
-GET  /api/
+GET  /
 ```
    #### User Signup
 ```javascript
-POST  /api/signup
+POST  /user/signup
 ```
   #### User Signin
 ```javascript
-POST  /api/login
+POST  /user/login
 ```
   #### User Logout
 ```javascript
-POST  /api/logout
+POST  /user/logout
 ```
-   #### QR 
+  #### User Edit Profile 
 ```javascript
-POST /api/qr/post
+POST  /user/editprofile
+```
+   #### Income Operation 
+```javascript
+POST /income/addincome
 ```
 
-   ####  Admin Operations
  ```javascript
- GET /api/user/detail/
+ GET /income/
  ```
  
  ```javascript
- POST /api/user/block/
+ PATCH  /income/editincome/:id
  ```
  
  ```javascript
- GET /api/user/block/details/
+ DELET /income/delete/:id
  ```
  
  ```javascript
- POST /api/user/unblock/
+ POST /income/filterdata
+ ```
+ 
+   #### Expense Operation 
+```javascript
+POST /expense/addincome
+```
+
+ ```javascript
+ GET /expense/
  ```
  
  ```javascript
- DELETE /api/user/delete
+ PATCH  /expense/editincome/:id
  ```
  
-  
+ ```javascript
+ DELET /expense/delete/:id
+ ```
+ 
+ ```javascript
+ POST /expense/filterdata
+ ```
+
 
  ### 
 `USERS DATA...`
 
-    {"first_name":"harsh thakur",
-    "email":"harsh@gmail.com",
-    "password":"123456"  }
+   { fname:{type:String},
+    lname:{type:String},
+    email:{type:String,require:true},
+    password:{type:String,required:true},
+    mobile:{type:Number},
+    avatar:{type:String},
+    address:{type:String},
+    dob:{type:Date},
+    createdAt:{type: Date,default: Date.now} }
+
 
  ### 
-`QR DATA...`
+`Income/Expense DATA...`
 
-    {"url":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJO1Bmu2stkBmmOJXmyHN5G7UHmeA4xr5z0whR9JZF&s",
-     "size":"150 x 150"
-    "email":"abhisek@gmail.com"}
+    {
+    title:{type:String,required:true},
+    type:{type:String,required:true},
+    amount:{type:Number,require:true},
+    userID:{type:String},
+    method:{type:String},
+    createdAt:{type: Date,default: Date.now}
+}
   
 
 
@@ -143,11 +180,14 @@ POST /api/qr/post
 | `Project Highlights` |
 | :------------------: | 
 
- <img src="https://user-images.githubusercontent.com/112754448/221420942-4551e750-966f-4529-942e-0a96c8c260b1.png" width="600" height="250" />
- <img src="https://user-images.githubusercontent.com/112754448/221421124-5499cac6-4088-49ea-a22f-aae4da046310.png" width="600" height="250"/>
- <img src="https://user-images.githubusercontent.com/112754448/221421133-44a7c58b-e803-4107-ae76-8806e14a022d.png" width="600" height="250"/>
- <img src="https://user-images.githubusercontent.com/112754448/221421205-c42d3aa1-0609-4eee-b248-184d9562e5de.png" width="600" height="250"/>
- <img src="https://user-images.githubusercontent.com/112754448/221421220-db91dccc-16bb-40eb-9e33-45ca065f176f.png" width="600" height="250"/>
+ <img src="https://user-images.githubusercontent.com/112817197/229363692-70efa206-019e-4d17-91f0-372fe1a2fbcd.png" width="600" height="250"/>
+ <img src="https://user-images.githubusercontent.com/112817197/229363889-d5b816b9-6dbf-4cf0-839d-fd4e233fc1c4.png" width="600" height="250"/>
+ <img src="https://user-images.githubusercontent.com/112817197/229363794-409253a7-ccf7-4ffa-b6b3-1b7c2d874ed4.png" width="600" height="250"/>
+ <img src="https://user-images.githubusercontent.com/112817197/229364421-6c4bc408-1a08-4f42-8050-0189becd89c2.png" width="600" height="250"/>
+ <img src="https://user-images.githubusercontent.com/112817197/229364080-e4f8f2d5-a67c-45f4-99fd-c63c169accee.png" width="600" height="250"/>
+  <img src="https://user-images.githubusercontent.com/112817197/229366183-29dd2338-ef6d-4da3-9246-c820a790623d.png" width="600" height="250"/>
+  <img src="https://user-images.githubusercontent.com/112817197/229364616-6b80a814-0d2f-4332-94ca-f49dfdacdf6d.png" width="600" height="250"/>
+  <img src="https://user-images.githubusercontent.com/112817197/229365054-ae41d2c0-eb87-47b3-bc0d-49af3eef2bb3.png" width="600" height="250"/>
  
 <div/>
   
@@ -155,37 +195,17 @@ POST /api/qr/post
 | `Demo` |
 | :----: | 
    
+ Deployed Link: Frontend 
+  
+ [https://budgetbuddy-nu.vercel.app]
 
-[https://www-qrbot-com.netlify.app/]
-
-Scan for Deployed Link: 
-
-<img width="10%" src="https://user-images.githubusercontent.com/112754448/221485971-48d43e07-9a4f-4e48-b2ed-0552e9e7624a.png"><br>
+ Deployed Link: Backend
+  
+ [https://periwinkle-catfish-cuff.cyclic.app/] 
 
  
 | `Authors` |
 | :-------: | 
 
- [@abhishek1494k](https://github.com/abhishek1494k) 
+[@Akashfw](https://github.com/Akashfw) 
  
- [@utdsi](https://github.com/utdsi) 
- 
- [@Akashfw](https://github.com/Akashfw) 
- 
- [@Yunuslala](https://github.com/Yunuslala) 
- 
- [@Yuvraj1307](https://github.com/Yuvraj1307) 
- 
-<!-- | `Admin` |
-| :-----: | 
-
-
-/admin.login.html
-admin@gmail.com
-admin
- -->
-
-
-<!-- <img src="mongodb+srv://QRBot:QRBot@qrbot.oagp3ux.mongodb.net/QRBot?retryWrites=true&w=majority" /> -->
-<!-- port=5500 -->
-<!-- token_secret="Secret" -->
