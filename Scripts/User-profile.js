@@ -188,6 +188,11 @@ const accountOption = async (event) => {
     mobile
       ? (user_dispaly_mobile.innerHTML = mobile)
       : (user_dispaly_mobile.innerHTML = "Edit Profile");
+
+      document.getElementById("facebook").innerText=`${fname}@123`;
+      document.getElementById("insta").innerText=`@Duke_${fname}`;
+      document.getElementById("google").innerText=`${fname}.google`;
+      document.getElementById("twet").innerText=`@${fname}Tweet`;
   }
 };
 

@@ -116,7 +116,9 @@ function every_incomes_main_display(data) {
     down_arrow.setAttribute("class", "down_arrow");
 
     let more = document.createElement("p");
-    more.innerHTML = "more";
+    more.innerHTML = "more >";
+    more.style.color="#005C7A";
+    more.style.fontSize ="12px";
     down_arrow.append(more);
     every_incomes_card.append(every_income_card_inner, down_arrow);
     every_incomes_main.append(every_incomes_card);
@@ -230,6 +232,6 @@ income_search_btn.addEventListener("click", async () => {
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
-      income_main_func();
+      every_incomes_main_display(data);
     });
 });

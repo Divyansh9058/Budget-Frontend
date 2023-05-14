@@ -40,7 +40,7 @@
         <li><a href="#about" >About</a></li>
         <li><a href="#footer" >Contact</a></li>
         <li><a href="#services">Services</a></li>
-        <li><a href="#"  onclick="goToLoginPage()" id="username">Login</a></li>
+        <li><a href="#"  onclick="goTouserProfile()" id="username">Login</a></li>
       </ul>
     </nav>
     <section id="top" class="topval">
@@ -409,7 +409,7 @@
 
       <div class="second">
         <h2>Get Started Now</h2>
-        <button>
+        <button onclick="goTouserProfile()">
           <a href="./User-profile.html">Your Dashboard</a>
         </button>
       </div>
@@ -517,10 +517,15 @@
       };
 
       // go to user profile
+      //after clicking on name redirect user to user-page
       function goTouserProfile() {
-        console.log("go to user profile");
+        
         window.location.assign("./User-profile.html");
       }
+      
+     
+
+     
 
       // to cleat the session after the logout
       const logoutClearSS = () => {

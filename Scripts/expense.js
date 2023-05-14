@@ -81,7 +81,9 @@ const expenseOption = (event) => {
       down_arrow.setAttribute("class", "down_arrow");
   
       let more = document.createElement("p");
-      more.innerHTML = "more";
+      more.innerHTML = "more >";
+      more.style.color="#005C7A";
+      more.style.fontSize ="12px";
       down_arrow.append(more);
       every_exp_card.append(every_exp_card_inner, down_arrow);
       every_exp_main.append(every_exp_card);
@@ -232,6 +234,7 @@ const expenseOption = (event) => {
     })
     .then(res => res.json())
     .then((data)=>{
-      console.log(data)
+      console.log(data);
+      every_exp_main_display(data);
     })
   })
